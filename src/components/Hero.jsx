@@ -28,10 +28,11 @@ const Hero = () => {
   };
 
   useEffect(() => {
-    if (loadedVideos === totalVideos) {
+    if (loadedVideos === totalVideos - 1) {
       setIsLoading(false);
     }
-  });
+  }, [loadedVideos]);
+
   useGSAP(
     () => {
       if (hasClicked) {
@@ -102,7 +103,8 @@ const Hero = () => {
               <video
                 ref={nextVideoRef}
                 src={getVideoSrc(upcomingVideoIndex)}
-                loopmuted
+                loop
+                muted
                 id="current-video"
                 className="size-64 origin-center scale-150 object-cover object-center"
                 onLoadedData={handleVideoLoad}
